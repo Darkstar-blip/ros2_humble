@@ -22,7 +22,7 @@ echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws
+cd ~/ros2_ws 
 colcon build
 echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 source ~/.bashrc
@@ -110,21 +110,21 @@ EOF
 
 cd ~/ros2_ws/src
 cd smart_nav/smart_nav
-cp ~/python/__init__.py ~/ros2_ws/src/smart_nav/smart_nav/__init__.py
-cp ~/python/input_node.py ~/ros2_ws/src/smart_nav/smart_nav/input_node.py
-cp ~/python/decision_node.py ~/ros2_ws/src/smart_nav/smart_nav/decision_node.py
-cp ~/python/navigator_node.py ~/ros2_ws/src/smart_nav/smart_nav/navigator_node.py
+cp ~/ros2_humble/python/__init__.py ~/ros2_ws/src/smart_nav/smart_nav/__init__.py
+cp ~/ros2_humble/python/input_node.py ~/ros2_ws/src/smart_nav/smart_nav/input_node.py
+cp ~/ros2_humble/python/decision_node.py ~/ros2_ws/src/smart_nav/smart_nav/decision_node.py
+cp ~/ros2_humble/python/navigator_node.py ~/ros2_ws/src/smart_nav/smart_nav/navigator_node.py
 
-cd ~/ros2_ws
+cd ~/ros2_humble
 colcon build --packages-select smart_nav
 source install/setup.bash
 
 mkdir -p ~/turtlebot3_smart_nav/ml_model
 
-cp ~/dataset/project_dataset.csv ~/turtlebot3_smart_nav/ml_model/project_dataset.csv
+cp ~/ros2_humble/dataset/project_dataset.csv ~/turtlebot3_smart_nav/ml_model/project_dataset.csv
 
 cd ~/turtlebot3_smart_nav/ml_model
-cp ~/python/train_model.py ~/turtlebot3_smart_nav/ml_model/train_model.py
+cp ~/ros2_humble/python/train_model.py ~/turtlebot3_smart_nav/ml_model/train_model.py
 python3 train_model.py
 
 cp ~/turtlebot3_smart_nav/ml_model/room_predictor.joblib ~/ros2_ws/src/smart_nav/smart_nav/
