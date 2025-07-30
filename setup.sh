@@ -20,16 +20,19 @@ sudo rosdep init
 rosdep update
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+source /opt/ros/humble/setup.bash
 
 mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws 
+cd ~/ros2_ws
 colcon build
 echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+source /opt/ros/humble/setup.bash
 
 sudo apt install ros-humble-turtlebot3* -y
 echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
 source ~/.bashrc
+source /opt/ros/humble/setup.bash
 
 sudo apt install python3-pip -y
 pip3 install pandas scikit-learn joblib
@@ -38,6 +41,7 @@ pip3 install --force-reinstall scipy scikit-learn
 
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+source /opt/ros/humble/setup.bash
 
 echo ""
 echo "############################"
@@ -67,6 +71,8 @@ read -p "Type 'yes' once it's running: " ans; [ "$ans" = "yes" ] || exit 1
 echo "Move the robot quite some distance for about a min with teleop in this new window (w, a, s, d, s. x keys)"
 read -p "Type 'yes' once you are done: " ans; [ "$ans" = "yes" ] || exit 1
 
+source ~/.bashrc
+source /opt/ros/humble/setup.bash
 ros2 run nav2_map_server map_saver_cli -f ~/map
 
 echo ""
@@ -75,6 +81,11 @@ echo "ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=~/map.yaml u
 read -p "Type 'yes' once it's done: " ans; [ "$ans" = "yes" ] || exit 1
 
 cd ~/ros2_ws/src
+source ~/.bashrc
+source /opt/ros/humble/setup.bash
+
+cd ~/ros2_ws/src
+source ~/ros2_ws/install/setup.bash
 ros2 pkg create smart_nav --build-type ament_python --dependencies rclpy std_msgs geometry_msgs nav2_simple_commander
 
 cat > ~/ros2_ws/src/smart_nav/setup.py <<EOF
@@ -110,12 +121,16 @@ EOF
 
 cd ~/ros2_ws/src
 cd smart_nav/smart_nav
-cp ~/ros2_humble/python/__init__.py ~/ros2_ws/src/smart_nav/smart_nav/__init__.py
+
+touch ~/ros2_ws/src/smart_nav/smart_nav/__init__.py
 cp ~/ros2_humble/python/input_node.py ~/ros2_ws/src/smart_nav/smart_nav/input_node.py
 cp ~/ros2_humble/python/decision_node.py ~/ros2_ws/src/smart_nav/smart_nav/decision_node.py
 cp ~/ros2_humble/python/navigator_node.py ~/ros2_ws/src/smart_nav/smart_nav/navigator_node.py
 
-cd ~/ros2_humble
+source ~/.bashrc
+source /opt/ros/humble/setup.bash
+
+cd ~/ros2_ws
 colcon build --packages-select smart_nav
 source install/setup.bash
 
@@ -129,6 +144,8 @@ python3 train_model.py
 
 cp ~/turtlebot3_smart_nav/ml_model/room_predictor.joblib ~/ros2_ws/src/smart_nav/smart_nav/
 
+source ~/.bashrc
+source /opt/ros/humble/setup.bash
 cd ~/ros2_ws
 colcon build
 source install/setup.bash
