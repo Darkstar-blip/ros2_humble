@@ -24,6 +24,11 @@ for dir in "${DIRS_TO_REMOVE[@]}"; do
   fi
 done
 
+echo "Deleting map.pgm ..."
+rm -rf map.pgm
+echo "Deleting map.yaml ..."
+rm -rf map.yaml
+
 source ~/.bashrc
 
 echo "Undo complete"
