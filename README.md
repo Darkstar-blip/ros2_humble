@@ -70,7 +70,7 @@ sudo apt install git
   ```
 - If anything fails, use:
   ```bash
-  ~/ros2_humble/undo_setup.sh && cd~/ros2_humble/undo_script.sh
+  ~/ros2_humble/undo_setup.sh && cd ~
   ```
   Fix the error, and then run the setup script again with:
   ```bash
