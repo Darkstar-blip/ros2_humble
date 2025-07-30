@@ -28,4 +28,4 @@ def main():
     rclpy.init()
     node = DecisionNode()
     rclpy.spin(node)
-    rclpy.shutdown(
+    rclpy.shutdown()
