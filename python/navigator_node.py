@@ -12,7 +12,7 @@ class NavigatorNode(Node):
         self.subscriber = self.create_subscription(String, 'target_room', self.navigate, 10)
         self.room_goals = {
             'kitchen': [1.5, 0.5, 0.0],
-            'bedroom': [-7.0, -2.0, 0.0],
+            'bedroom': [-3.0, -2.0, 0.0],
             'living_room': [0.0, -3.5, 0.0]
         }
 
